@@ -133,7 +133,7 @@ If you use this implementation in your research, please cite:
 
 ```bibtex
 @software{topogreedy2024,
-  author = {Ajorlou, Hamed},
+  author = {Ajorlou, Hamed and Rey, Samuel and García Marques, Antonio and Mateos, Gonzalo},
   title = {TopoGreedy: Topological Greedy Algorithm for Causal Discovery},
   year = {2024},
   publisher = {GitHub},
