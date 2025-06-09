@@ -1,6 +1,6 @@
 # TopoGreedy: Topological Greedy Algorithm for Causal Discovery
 
-TopoGreedy is a novel algorithm for causal discovery that combines topological ordering with sparse precision matrix estimation using various implementations of the Graphical Lasso algorithm. This implementation provides efficient and scalable solutions for learning causal structures from observational data.
+TopoGreedy is an algorithm for causal discovery that combines topological ordering with sparse precision matrix estimation. This implementation provides efficient and scalable solutions for learning causal structures from observational data. Here we test different implementations of Graphical Lasso and we provide results for different types of graphs with various number of nodes.
 
 ## Overview
 
