@@ -322,7 +322,6 @@ def simulate_dag(d: int, s0: int, graph_type: str) -> np.ndarray:
     assert ig.Graph.Adjacency(B_perm.tolist()).is_dag()
     return B_perm
 
-
 def simulate_parameter(B: np.ndarray, 
                        w_ranges: typing.List[typing.Tuple[float,float]]=((-2.0, -0.5), (0.5, 2.0)),
                        ) -> np.ndarray:
@@ -334,7 +333,9 @@ def simulate_parameter(B: np.ndarray,
     B : np.ndarray
         :math:`[d, d]` binary adj matrix of DAG.
     w_ranges : typing.List[typing.Tuple[float,float]], optional
-        disjoint weight ranges, by default :math:`((-2.0, -0.5), (0.5, 2.0))`.
+        List of tuples specifying disjoint weight ranges. Each tuple contains (min, max) values.
+        For example, ((-2.0, -0.5), (0.5, 2.0)) means weights will be sampled from either
+        [-2.0, -0.5] or [0.5, 2.0]. Default is ((-2.0, -0.5), (0.5, 2.0)).
 
     Returns
     -------
@@ -343,9 +344,7 @@ def simulate_parameter(B: np.ndarray,
     """
     W = np.zeros(B.shape)
     S = np.random.randint(len(w_ranges), size=B.shape)  # which range
-    w_ranges = [(0.5, 1.5)]
-    for i in range(len(w_ranges)):
-        low, high = w_ranges[i]
+    for i, (low, high) in enumerate(w_ranges):
         U = np.random.uniform(low=low, high=high, size=B.shape)
         W += B * (S == i) * U
     
@@ -353,7 +352,6 @@ def simulate_parameter(B: np.ndarray,
     Theta = (I - W.T).T @ (I - W.T)
 
     return W, Theta
-
 
 def simulate_linear_sem(W: np.ndarray, 
                         n: int, 
@@ -567,3 +565,6 @@ def count_accuracy(B_true: np.ndarray, B_est: np.ndarray) -> dict:
     missing_lower = np.setdiff1d(cond_lower, pred_lower, assume_unique=True)
     shd = len(extra_lower) + len(missing_lower) + len(reverse)
     return {'fdr': fdr, 'tpr': tpr, 'fpr': fpr, 'shd': shd, 'nnz': pred_size}
+
+
+

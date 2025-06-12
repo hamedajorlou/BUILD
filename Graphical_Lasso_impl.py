@@ -305,6 +305,7 @@ def coordinate_descent_lasso(V, u, rho, max_iter=1000, tol=1e-6):
             
     return beta
 
+
 def graphical_lasso_TB(S, rho, max_iter=100, tol=1e-3, verbose=False):
     """
     Graphical Lasso algorithm for sparse inverse covariance estimation.
@@ -411,3 +412,153 @@ def graphical_lasso_TB(S, rho, max_iter=100, tol=1e-3, verbose=False):
                 break
     
     return Theta
+
+
+
+
+
+
+    # INSERT_YOUR_CODE
+def graphical_lasso_verbose(S, alpha, max_iter=100, tol=1e-5, verbose=True):
+    """
+    Robust, scalable, and accurate implementation of the Graphical Lasso algorithm
+    with detailed verbose output for monitoring convergence.
+
+    Parameters
+    ----------
+    S : ndarray, shape (p, p)
+        Empirical covariance matrix (symmetric, positive semi-definite)
+    alpha : float
+        Regularization parameter (controls sparsity)
+    max_iter : int, optional
+        Maximum number of outer iterations (default: 100)
+    tol : float, optional
+        Convergence tolerance (default: 1e-5)
+    verbose : bool, optional
+        If True, print detailed progress information
+
+    Returns
+    -------
+    Theta : ndarray, shape (p, p)
+        Estimated precision (inverse covariance) matrix
+    Sigma : ndarray, shape (p, p)
+        Estimated covariance matrix (inverse of Theta)
+    """
+
+    p = S.shape[0]
+    W = S + alpha * np.eye(p)  # Initial guess for covariance
+    Theta = np.linalg.pinv(W)  # Initial guess for precision
+    B = np.zeros((p, p))       # Regression coefficients
+
+    if verbose:
+        print("Graphical Lasso: Starting optimization")
+        print(f"  Matrix size: {p}x{p}")
+        print(f"  Regularization alpha: {alpha}")
+        print(f"  Max iterations: {max_iter}")
+        print(f"  Tolerance: {tol:.2e}")
+
+    for outer_iter in range(max_iter):
+        W_old = W.copy()
+        max_diff = 0.0
+
+        for j in range(p):
+            # Indices for all but j
+            idx = np.arange(p) != j
+
+            S_11 = S[np.ix_(idx, idx)]
+            s_12 = S[idx, j]
+
+            # Solve lasso: min_w 0.5 w^T S_11 w - s_12^T w + alpha * ||w||_1
+            # Use coordinate descent
+            w = np.zeros(p-1)
+            max_lasso_iter = 100
+            for lasso_iter in range(max_lasso_iter):
+                w_old = w.copy()
+                for k in range(p-1):
+                    # Compute residual excluding k-th variable
+                    tmp = S_11[k, :].dot(w) - S_11[k, k]*w[k]
+                    rho = s_12[k] - tmp
+                    w[k] = soft_threshold(rho, alpha) / (S_11[k, k] + 1e-12)
+                lasso_change = np.max(np.abs(w - w_old))
+                if lasso_change < 1e-8:
+                    break
+
+            if verbose and (outer_iter == 0 or (outer_iter+1) % 10 == 0):
+                print(f"  [Iter {outer_iter+1}] Variable {j+1}/{p} lasso iters: {lasso_iter+1}, max change: {lasso_change:.2e}")
+
+            # Update W and B
+            W[idx, j] = S_11.dot(w)
+            W[j, idx] = W[idx, j]
+            W[j, j] = S[j, j] + alpha
+            B[idx, j] = w
+            B[j, j] = 0.0
+
+        # Check convergence
+        diff = np.linalg.norm(W - W_old, ord='fro')
+        max_diff = np.max(np.abs(W - W_old))
+        if verbose:
+            print(f"Iteration {outer_iter+1:3d}: Frobenius diff = {diff:.4e}, Max abs diff = {max_diff:.4e}")
+
+        if diff < tol * np.linalg.norm(W_old, ord='fro'):
+            if verbose:
+                print(f"Converged after {outer_iter+1} iterations (diff: {diff:.2e})")
+            break
+
+    # Compute precision matrix Theta from W and B
+    Theta = np.zeros_like(W)
+    for j in range(p):
+        idx = np.arange(p) != j
+        w_12 = W[idx, j]
+        w_22 = W[j, j]
+        beta = B[idx, j]
+        try:
+            theta_22 = 1.0 / (w_22 - np.dot(w_12, beta))
+            theta_12 = -beta * theta_22
+            Theta[j, j] = theta_22
+            Theta[idx, j] = theta_12
+            Theta[j, idx] = theta_12
+        except Exception as e:
+            if verbose:
+                print(f"Warning: Could not compute Theta for variable {j}: {e}")
+            try:
+                Theta = np.linalg.pinv(W)
+            except Exception as e2:
+                if verbose:
+                    print(f"  Fallback inversion failed: {e2}")
+                Theta = None
+            break
+
+    # Symmetrize Theta
+    if Theta is not None:
+        Theta = (Theta + Theta.T) / 2
+
+    # Compute covariance matrix
+    if Theta is not None:
+        try:
+            cond = np.linalg.cond(Theta)
+            if cond > 1e12:
+                if verbose:
+                    print(f"Warning: Precision matrix is ill-conditioned (cond={cond:.2e}), using pseudo-inverse.")
+                Sigma = np.linalg.pinv(Theta)
+            else:
+                Sigma = np.linalg.inv(Theta)
+        except Exception as e:
+            if verbose:
+                print(f"Warning: Could not invert Theta, using pseudo-inverse. Error: {e}")
+            Sigma = np.linalg.pinv(Theta)
+    else:
+        Sigma = None
+
+    if verbose:
+        print("Graphical Lasso: Optimization complete.")
+        if Theta is not None:
+            print(f"  Nonzero entries in Theta: {np.sum(np.abs(Theta) > 1e-8)}")
+            print(f"  Max abs(Theta): {np.max(np.abs(Theta)):.4e}")
+        else:
+            print("  Theta is None (failed inversion).")
+        if Sigma is not None:
+            print(f"  Max abs(Sigma): {np.max(np.abs(Sigma)):.4e}")
+        else:
+            print("  Sigma is None (failed inversion).")
+
+    return Theta, Sigma
