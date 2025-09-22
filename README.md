@@ -1,14 +1,14 @@
-# BUILD: Bayesian Undirected Inference for Learning DAGs
+# BUILD: Bottom-Up Inference of Linear DAGs
 
-BUILD is a novel algorithm for causal discovery that combines Bayesian inference with undirected graph learning to efficiently discover Directed Acyclic Graphs (DAGs) from observational data. This implementation provides state-of-the-art performance in learning causal structures with improved scalability and accuracy.
+BUILD is a novel algorithm for causal discovery that uses a bottom-up approach to efficiently discover Directed Acyclic Graphs (DAGs) from observational data. This implementation provides state-of-the-art performance in learning causal structures with improved scalability and accuracy.
 
 ## Overview
 
 The BUILD algorithm works by:
-1. Learning an undirected graph structure using sparse precision matrix estimation
-2. Applying Bayesian inference to determine edge orientations
-3. Iteratively refining the DAG structure through topological constraints
-4. Combining multiple baselines for robust causal discovery
+1. Starting from leaf nodes and building up the DAG structure
+2. Using bottom-up inference to determine causal relationships
+3. Iteratively building the DAG from bottom to top
+4. Leveraging linear DAG assumptions for efficient discovery
 
 ## Repository Structure
 
@@ -38,9 +38,9 @@ The BUILD algorithm works by:
 ## Features
 
 ### BUILD Algorithm
-- **Bayesian Inference**: Uses Bayesian principles for robust edge orientation
-- **Undirected Learning**: Leverages sparse precision matrix estimation
-- **Topological Constraints**: Enforces DAG properties through iterative refinement
+- **Bottom-Up Approach**: Builds DAG structure starting from leaf nodes
+- **Linear DAG Focus**: Specialized for linear structural equation models
+- **Iterative Construction**: Builds DAG structure iteratively from bottom to top
 - **Scalable Implementation**: Efficient algorithms for large-scale causal discovery
 
 ### Comprehensive Baselines
@@ -201,7 +201,7 @@ If you use this implementation in your research, please cite:
 ```bibtex
 @software{build2024,
   author = {Ajorlou, Hamed and Rey, Samuel and García Marques, Antonio and Mateos, Gonzalo},
-  title = {BUILD: Bayesian Undirected Inference for Learning DAGs},
+  title = {BUILD: Bottom-Up Inference of Linear DAGs},
   year = {2024},
   publisher = {GitHub},
   url = {https://github.com/hamedajorlou/BUILD}
