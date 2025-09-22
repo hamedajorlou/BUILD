@@ -4,6 +4,7 @@ BUILD is a novel algorithm for causal discovery that uses a bottom-up approach t
 
 ![BUILD Algorithm Overview](DAGprec.jpeg)
 
+*Figure 1: Overview of the BUILD algorithm for causal discovery*
 ## Overview
 
 The BUILD algorithm works by:
@@ -12,51 +13,30 @@ The BUILD algorithm works by:
 3. Iteratively building the DAG from bottom to top
 4. Leveraging linear DAG assumptions for efficient discovery
 
-## Repository Structure
-
-### Core Algorithm Files
-- `BUILD.py` - Main BUILD algorithm implementation
-- `utils.py` - Utility functions for data processing and evaluation
-- `dag_utils.py` - DAG-specific utility functions
-- `Greedy_prune.py` - Greedy pruning algorithms for graph refinement
-
-### Baseline Implementations
-- `Baselines.py` - Comprehensive collection of baseline algorithms including:
-  - CoLiDE-EV (Equal Variance) [Zhang et al., 2023]
-  - CoLiDE-NV (Non-equal Variance) 
-  - DAGMA-linear [Bello et al., 2022]
-  - Non-negative DAGMA
-  - MetMulDagma
-  - NOTEARS-linear [Zheng et al., 2018]
-
-### Notebooks and Examples
-- `Continous_relax.ipynb` - Continuous relaxation experiments and analysis
-- `ICMLpaper.ipynb` - Experiments and results for ICML paper
-
-### Configuration
-- `requirements.txt` - Python dependencies
-- `.gitignore` - Git ignore rules for local development files
+---
 
 ## Features
 
 ### BUILD Algorithm
-- **Bottom-Up Approach**: Builds DAG structure starting from leaf nodes
-- **Linear DAG Focus**: Specialized for linear structural equation models
-- **Iterative Construction**: Builds DAG structure iteratively from bottom to top
-- **Scalable Implementation**: Efficient algorithms for large-scale causal discovery
+- **Bottom-Up Approach**: Builds DAG structure starting from leaf nodes  
+- **Linear DAG Focus**: Specialized for linear structural equation models  
+- **Iterative Construction**: Builds DAG structure iteratively from bottom to top  
+- **Scalable Implementation**: Efficient algorithms for large-scale causal discovery  
 
 ### Comprehensive Baselines
-- **CoLiDE Variants**: Both equal and non-equal variance implementations
-- **DAGMA Methods**: Linear and non-negative variants with multiple optimization strategies
-- **NOTEARS**: Linear structural equation modeling approach
-- **MetMulDagma**: Multiplicative DAGMA with advanced optimization
-
+- **CoLiDE Variants**: Both equal and non-equal variance implementations  
+- **DAGMA Methods**: Linear and non-negative variants with multiple optimization strategies  
+- **Gao et al.:
+- **Daskalasis et al.:
+  
 ### Key Features
-- Multiple optimization strategies (FISTA, coordinate descent, block operations)
-- Automatic hyperparameter selection
-- Robust handling of numerical instabilities
-- Comprehensive evaluation metrics
-- Support for different graph types and noise models
+- Multiple optimization strategies (FISTA, coordinate descent, block operations)  
+- Automatic hyperparameter selection  
+- Robust handling of numerical instabilities  
+- Comprehensive evaluation metrics  
+- Support for different graph types and noise models  
+
+---
 
 ## Installation
 
@@ -67,109 +47,6 @@ cd BUILD
 
 # Install dependencies
 pip install -r requirements.txt
-```
-
-## Usage
-
-### Basic BUILD Algorithm
-
-```python
-from BUILD import BUILD
-import numpy as np
-
-# Generate or load your data
-X = np.random.randn(100, 10)  # 100 samples, 10 variables
-
-# Initialize and run BUILD
-model = BUILD()
-W_est, Theta_est = model.fit(X, lambda1=0.1)
-
-print(f"Estimated adjacency matrix shape: {W_est.shape}")
-```
-
-### Using Baselines
-
-```python
-from Baselines import DAGMA_linear, colide_ev, notears_linear
-
-# DAGMA-linear
-dagma_model = DAGMA_linear(loss_type='l2')
-W_dagma = dagma_model.fit(X, lambda1=0.1)
-
-# CoLiDE-EV
-colide_model = colide_ev()
-W_colide, sigma = colide_model.fit(X, lambda1=0.1)
-
-# NOTEARS
-W_notears = notears_linear(X, lambda1=0.1)
-```
-
-### Advanced Usage with Custom Parameters
-
-```python
-from BUILD import BUILD
-
-# Initialize with custom parameters
-model = BUILD(
-    max_iter=1000,
-    tol=1e-6,
-    verbose=True
-)
-
-# Fit with custom regularization
-W_est, Theta_est = model.fit(
-    X, 
-    lambda1=0.05,
-    edge_threshold=0.1
-)
-```
-
-## API Reference
-
-### Class: BUILD
-
-#### Parameters
-- `max_iter` (int): Maximum number of iterations
-- `tol` (float): Convergence tolerance
-- `verbose` (bool): Enable/disable verbose output
-
-#### Methods
-- `fit(X, lambda1, edge_threshold=0.1)`: Fit the model to data
-  - `X`: Input data matrix of shape (n_samples, n_features)
-  - `lambda1`: Regularization parameter for sparsity
-  - `edge_threshold`: Threshold for edge selection
-  - Returns: `(W_est, Theta_est)` - Estimated adjacency matrix and precision matrix
-
-### Baseline Classes
-
-#### DAGMA_linear
-- `fit(X, lambda1, w_threshold=0.3, T=5, ...)`: Fit DAGMA model
-
-#### colide_ev / colide_nv
-- `fit(X, lambda1, T=5, ...)`: Fit CoLiDE model
-
-#### Nonneg_dagma
-- `fit(X, alpha, lamb, stepsize, ...)`: Fit non-negative DAGMA
-
-## Evaluation and Metrics
-
-The repository includes comprehensive evaluation tools:
-
-```python
-import utils
-
-# Load ground truth and estimated adjacency matrices
-W_true = np.load('true_adjacency.npy')
-W_est = np.load('estimated_adjacency.npy')
-
-# Compute accuracy metrics
-shd, tpr, fdr = utils.count_accuracy(W_true, W_est)
-f1_score = utils.compute_f1_score(W_true, W_est)
-norm_error = utils.compute_norm_sq_err(W_true, W_est)
-
-print(f"SHD: {shd}, TPR: {tpr:.3f}, FDR: {fdr:.3f}")
-print(f"F1 Score: {f1_score:.3f}, Normalized Error: {norm_error:.3f}")
-```
 
 ## Requirements
 
@@ -180,17 +57,6 @@ print(f"F1 Score: {f1_score:.3f}, Normalized Error: {norm_error:.3f}")
 - scikit-learn >= 1.0.0
 - tqdm >= 4.60.0
 
-## Local Development Files
-
-The following files are kept locally for development but not tracked in the repository:
-- `Samu__run.ipynb` - Samuel's experimental notebook
-- `dagu.py` - DAG utilities (local development)
-- `TopoGreedy.py` - TopoGreedy implementation (local development)
-- `notebook.ipynb` - General experimental notebook
-- `main.py` - Main execution script (local development)
-- `samu_run.ipynb` - Samuel's run notebook
-- `baselines.py` - Alternative baselines implementation (local development)
-- `continous_relaxation.ipynb` - Continuous relaxation experiments (local development)
 
 ## References
 
@@ -198,11 +64,10 @@ The following files are kept locally for development but not tracked in the repo
 
 **BUILD Algorithm:**
 ```bibtex
-@article{ajourlou2024build,
+@article{ajorlou2024build,
   title={BUILD: Bottom-Up Inference of Linear DAGs},
-  author={Ajorlou, Hamed and Rey, Samuel and García Marques, Antonio and Mateos, Gonzalo},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
-  year={2024}
+  author={Ajorlou, Hamed and Rey, Samuel and Mateos, Gonzalo and leus, Geert and García Marques, Antonio and},
+  year={2025}
 }
 ```
 
