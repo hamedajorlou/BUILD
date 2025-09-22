@@ -78,7 +78,7 @@ BUILD is a novel algorithm for causal discovery that uses a bottom-up approach t
   publisher={Oxford University Press}
 }
 ```
-**GreedyPrune**
+**GreedyPrune:**
 ```bibtex
 @article{kelner2020greedy,
   title={Learning some popular {G}aussian graphical models without condition number bounds},
