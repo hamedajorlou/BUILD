@@ -5,23 +5,12 @@ BUILD is a novel algorithm for causal discovery that uses a bottom-up approach t
 ![BUILD Algorithm Overview](DAGprec.jpeg)
 
 ## Overview
-
-The BUILD algorithm works by:
-1. Starting from leaf nodes and building up the DAG structure
-2. Using bottom-up inference to determine causal relationships
-3. Iteratively building the DAG from bottom to top
-4. Leveraging linear DAG assumptions for efficient discovery
-
-
-## Features
-
-### BUILD Algorithm
 - **Deterministic**: introduces a deterministic algorithm to recover the structure of the DAG.
 - **Linear DAG Focus**: Specialized for linear structural equation models.
 - **Iterative Construction**: Builds DAG structure iteratively from bottom to top.
 - **Robust to estimation errors**: Employing optional refreshing of the weights to curb estimation error propagation.
 
-### Comprehensive Baselines
+### Baselines
 - **CoLiDE**: Both equal and non-equal variance implementations  
 - **DAGMA**: Linear and non-negative variants with multiple optimization strategies  
 - **Gao et al.**: Optimal estimation of Gaussian DAG models
