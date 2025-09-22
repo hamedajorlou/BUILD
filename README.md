@@ -87,7 +87,7 @@ BUILD is a novel algorithm for causal discovery that uses a bottom-up approach t
   pages={1236--1249},
   year={2020}
 }
-
+```
 ### Additional References
 
 For more information on causal discovery and DAG learning, see:
