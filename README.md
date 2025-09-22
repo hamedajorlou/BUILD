@@ -17,16 +17,16 @@ The BUILD algorithm works by:
 ## Features
 
 ### BUILD Algorithm
-- **Bottom-Up Approach**: Builds DAG structure starting from leaf nodes  
-- **Linear DAG Focus**: Specialized for linear structural equation models  
-- **Iterative Construction**: Builds DAG structure iteratively from bottom to top  
-- **Scalable Implementation**: Efficient algorithms for large-scale causal discovery  
+- **Deterministic**: introduces a deterministic algorithm to recover the structure of the DAG.
+- **Linear DAG Focus**: Specialized for linear structural equation models.
+- **Iterative Construction**: Builds DAG structure iteratively from bottom to top.
+- **Robust to estimation errors**: Employing optional refreshing of the weights to curb estimation error propagation.
 
 ### Comprehensive Baselines
-- **CoLiDE Variants**: Both equal and non-equal variance implementations  
-- **DAGMA Methods**: Linear and non-negative variants with multiple optimization strategies  
-- **Gao et al.: Optimal estimation of Gaussian DAG models
-- **Daskalasis et al.: Learning Gaussian DAG Models without Condition Number Bounds
+- **CoLiDE**: Both equal and non-equal variance implementations  
+- **DAGMA**: Linear and non-negative variants with multiple optimization strategies  
+- **Gao et al.**: Optimal estimation of Gaussian DAG models
+- **Daskalasis et al.**: Learning Gaussian DAG Models without Condition Number Bounds
   
 ### Key Features
 - Multiple optimization strategies (FISTA, coordinate descent, block operations)  
