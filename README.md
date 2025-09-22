@@ -106,7 +106,7 @@ If you use this implementation in your research, please cite:
 
 ```bibtex
 @software{build2024,
-  author = {Ajorlou, Hamed and Rey, Samuel and García Marques, Antonio and Mateos, Gonzalo},
+  author = {Ajorlou, Hamed and Rey, Samuel and Mateos, Gonzalo Leus, Geert and García Marques, Antonio},
   title = {BUILD: Bottom-Up Inference of Linear DAGs},
   year = {2025},
   url = {https://github.com/hamedajorlou/BUILD}
