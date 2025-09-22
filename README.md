@@ -4,7 +4,6 @@ BUILD is a novel algorithm for causal discovery that uses a bottom-up approach t
 
 ![BUILD Algorithm Overview](DAGprec.jpeg)
 
-*Figure 1: Overview of the BUILD algorithm for causal discovery*
 ## Overview
 
 The BUILD algorithm works by:
@@ -26,8 +25,8 @@ The BUILD algorithm works by:
 ### Comprehensive Baselines
 - **CoLiDE Variants**: Both equal and non-equal variance implementations  
 - **DAGMA Methods**: Linear and non-negative variants with multiple optimization strategies  
-- **Gao et al.:
-- **Daskalasis et al.:
+- **Gao et al.: Optimal estimation of Gaussian DAG models
+- **Daskalasis et al.: Learning Gaussian DAG Models without Condition Number Bounds
   
 ### Key Features
 - Multiple optimization strategies (FISTA, coordinate descent, block operations)  
