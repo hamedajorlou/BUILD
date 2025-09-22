@@ -2,6 +2,8 @@
 
 BUILD is a novel algorithm for causal discovery that uses a bottom-up approach to efficiently discover Directed Acyclic Graphs (DAGs) from observational data. This implementation provides state-of-the-art performance in learning causal structures with improved scalability and accuracy.
 
+![BUILD Algorithm Overview](DAGprec.jpeg)
+
 ## Overview
 
 The BUILD algorithm works by:
