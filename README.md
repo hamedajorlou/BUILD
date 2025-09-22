@@ -82,8 +82,6 @@ pip install -r requirements.txt
   pages={8226--8239},
   year={2022}
 }
-```
-
 **CoLiDE:**
 ```bibtex
 @article{zhang2023colide,
@@ -93,8 +91,6 @@ pip install -r requirements.txt
   volume={36},
   year={2023}
 }
-```
-
 **NOTEARS:**
 ```bibtex
 @article{zheng2018dags,
@@ -104,8 +100,6 @@ pip install -r requirements.txt
   volume={31},
   year={2018}
 }
-```
-
 **Graphical Lasso:**
 ```bibtex
 @article{friedman2008sparse,
@@ -117,6 +111,14 @@ pip install -r requirements.txt
   pages={432--441},
   year={2008},
   publisher={Oxford University Press}
+}
+**GreedyPrune**
+@article{kelner2020greedy,
+  title={Learning some popular {G}aussian graphical models without condition number bounds},
+  author={Kelner, J. and Koehler, F. and Meka, R. and Moitra, A.},
+  journal=NEURIPS,
+  pages={1236--1249},
+  year={2020}
 }
 ```
 
@@ -130,7 +132,7 @@ For more information on causal discovery and DAG learning, see:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request. For local development, you can work with the ignored files without affecting the repository.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Citation
 
@@ -140,8 +142,7 @@ If you use this implementation in your research, please cite:
 @software{build2024,
   author = {Ajorlou, Hamed and Rey, Samuel and García Marques, Antonio and Mateos, Gonzalo},
   title = {BUILD: Bottom-Up Inference of Linear DAGs},
-  year = {2024},
-  publisher = {GitHub},
+  year = {2025},
   url = {https://github.com/hamedajorlou/BUILD}
 }
 ```
