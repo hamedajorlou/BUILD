@@ -3,3 +3,4 @@ sem_results/
 __pycache__/
 *.csv
 Samu__run.ipynb
+dagu.py
