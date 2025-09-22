@@ -12,7 +12,6 @@ The BUILD algorithm works by:
 3. Iteratively building the DAG from bottom to top
 4. Leveraging linear DAG assumptions for efficient discovery
 
----
 
 ## Features
 
@@ -28,33 +27,7 @@ The BUILD algorithm works by:
 - **Gao et al.**: Optimal estimation of Gaussian DAG models
 - **Daskalasis et al.**: Learning Gaussian DAG Models without Condition Number Bounds
   
-### Key Features
-- Multiple optimization strategies (FISTA, coordinate descent, block operations)  
-- Automatic hyperparameter selection  
-- Robust handling of numerical instabilities  
-- Comprehensive evaluation metrics  
-- Support for different graph types and noise models  
-
 ---
-
-## Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/hamedajorlou/BUILD.git
-cd BUILD
-
-# Install dependencies
-pip install -r requirements.txt
-
-## Requirements
-
-- Python >= 3.7
-- NumPy >= 1.20.0
-- SciPy >= 1.7.0
-- Matplotlib >= 3.3.0
-- scikit-learn >= 1.0.0
-- tqdm >= 4.60.0
 
 
 ## References
@@ -63,7 +36,7 @@ pip install -r requirements.txt
 
 **BUILD Algorithm:**
 ```bibtex
-@article{ajorlou2024build,
+@article{ajorlou2025build,
   title={BUILD: Bottom-Up Inference of Linear DAGs},
   author={Ajorlou, Hamed and Rey, Samuel and Mateos, Gonzalo and leus, Geert and García Marques, Antonio and},
   year={2025}
@@ -82,6 +55,7 @@ pip install -r requirements.txt
   pages={8226--8239},
   year={2022}
 }
+```
 **CoLiDE:**
 ```bibtex
 @article{zhang2023colide,
@@ -91,6 +65,7 @@ pip install -r requirements.txt
   volume={36},
   year={2023}
 }
+```
 **NOTEARS:**
 ```bibtex
 @article{zheng2018dags,
@@ -100,6 +75,7 @@ pip install -r requirements.txt
   volume={31},
   year={2018}
 }
+```
 **Graphical Lasso:**
 ```bibtex
 @article{friedman2008sparse,
@@ -112,6 +88,7 @@ pip install -r requirements.txt
   year={2008},
   publisher={Oxford University Press}
 }
+```
 **GreedyPrune**
 @article{kelner2020greedy,
   title={Learning some popular {G}aussian graphical models without condition number bounds},
