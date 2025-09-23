@@ -11,8 +11,8 @@ BUILD is a novel algorithm for causal discovery that uses a bottom-up approach t
 - **Robust to estimation errors**: Employing optional refreshing of the weights to curb estimation error propagation.
 
 ### Baselines
-- **CoLiDE**: Both equal and non-equal variance implementations  
-- **DAGMA**: Linear and non-negative variants with multiple optimization strategies  
+- **CoLiDE**: Concomitant Linear DAG estimation
+- **DAGMA**:  Learning DAGs via M-matrices and a Log-Determinant Acyclicity Characterization
 - **Gao et al.**: Optimal estimation of Gaussian DAG models
 - **Daskalasis et al.**: Learning Gaussian DAG Models without Condition Number Bounds
   
