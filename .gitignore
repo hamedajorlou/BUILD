@@ -10,3 +10,4 @@ main.py
 samu_run.ipynb
 baselines.py
 continous_relaxation.ipynb
+.DS_Store
