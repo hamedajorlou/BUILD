@@ -1,61 +1,22 @@
 # BUILD: Bottom-Up Inference of Linear DAGs
 
-BUILD is a novel algorithm for causal discovery that uses a bottom-up approach to efficiently discover Directed Acyclic Graphs (DAGs) from observational data. This implementation provides state-of-the-art performance in learning causal structures with improved scalability and accuracy.
+BUILD is a novel algorithm for causal discovery that uses a bottom-up approach employing the precision matrix to efficiently discover Directed Acyclic Graphs (DAGs) from observational data.
 
 ![BUILD Algorithm Overview](DAGprec.jpeg)
 
-*Figure 1: Overview of the BUILD algorithm for causal discovery*
 ## Overview
+- **Deterministic**: introduces a deterministic algorithm to recover the structure of the DAG.
+- **Linear DAG Focus**: Specialized for linear structural equation models.
+- **Iterative Construction**: Builds DAG structure iteratively from bottom to top.
+- **Robust to estimation errors**: Employing optional refreshing of the weights to curb estimation error propagation.
 
-The BUILD algorithm works by:
-1. Starting from leaf nodes and building up the DAG structure
-2. Using bottom-up inference to determine causal relationships
-3. Iteratively building the DAG from bottom to top
-4. Leveraging linear DAG assumptions for efficient discovery
-
----
-
-## Features
-
-### BUILD Algorithm
-- **Bottom-Up Approach**: Builds DAG structure starting from leaf nodes  
-- **Linear DAG Focus**: Specialized for linear structural equation models  
-- **Iterative Construction**: Builds DAG structure iteratively from bottom to top  
-- **Scalable Implementation**: Efficient algorithms for large-scale causal discovery  
-
-### Comprehensive Baselines
-- **CoLiDE Variants**: Both equal and non-equal variance implementations  
-- **DAGMA Methods**: Linear and non-negative variants with multiple optimization strategies  
-- **Gao et al.:
-- **Daskalasis et al.:
+### Baselines
+- **CoLiDE**: Concomitant Linear DAG estimation
+- **DAGMA**:  Learning DAGs via M-matrices and a Log-Determinant Acyclicity Characterization
+- **Gao et al.**: Optimal estimation of Gaussian DAG models
+- **Daskalasis et al.**: Learning Gaussian DAG Models without Condition Number Bounds
   
-### Key Features
-- Multiple optimization strategies (FISTA, coordinate descent, block operations)  
-- Automatic hyperparameter selection  
-- Robust handling of numerical instabilities  
-- Comprehensive evaluation metrics  
-- Support for different graph types and noise models  
-
 ---
-
-## Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/hamedajorlou/BUILD.git
-cd BUILD
-
-# Install dependencies
-pip install -r requirements.txt
-
-## Requirements
-
-- Python >= 3.7
-- NumPy >= 1.20.0
-- SciPy >= 1.7.0
-- Matplotlib >= 3.3.0
-- scikit-learn >= 1.0.0
-- tqdm >= 4.60.0
 
 
 ## References
@@ -64,7 +25,7 @@ pip install -r requirements.txt
 
 **BUILD Algorithm:**
 ```bibtex
-@article{ajorlou2024build,
+@article{ajorlou2025build,
   title={BUILD: Bottom-Up Inference of Linear DAGs},
   author={Ajorlou, Hamed and Rey, Samuel and Mateos, Gonzalo and leus, Geert and García Marques, Antonio and},
   year={2025}
@@ -84,7 +45,6 @@ pip install -r requirements.txt
   year={2022}
 }
 ```
-
 **CoLiDE:**
 ```bibtex
 @article{zhang2023colide,
@@ -95,7 +55,6 @@ pip install -r requirements.txt
   year={2023}
 }
 ```
-
 **NOTEARS:**
 ```bibtex
 @article{zheng2018dags,
@@ -106,7 +65,6 @@ pip install -r requirements.txt
   year={2018}
 }
 ```
-
 **Graphical Lasso:**
 ```bibtex
 @article{friedman2008sparse,
@@ -120,7 +78,16 @@ pip install -r requirements.txt
   publisher={Oxford University Press}
 }
 ```
-
+**GreedyPrune:**
+```bibtex
+@article{kelner2020greedy,
+  title={Learning some popular {G}aussian graphical models without condition number bounds},
+  author={Kelner, J. and Koehler, F. and Meka, R. and Moitra, A.},
+  journal=NEURIPS,
+  pages={1236--1249},
+  year={2020}
+}
+```
 ### Additional References
 
 For more information on causal discovery and DAG learning, see:
@@ -131,7 +98,7 @@ For more information on causal discovery and DAG learning, see:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request. For local development, you can work with the ignored files without affecting the repository.
+Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## Citation
 
@@ -139,10 +106,9 @@ If you use this implementation in your research, please cite:
 
 ```bibtex
 @software{build2024,
-  author = {Ajorlou, Hamed and Rey, Samuel and García Marques, Antonio and Mateos, Gonzalo},
+  author = {Ajorlou, Hamed and Rey, Samuel and Mateos, Gonzalo and Leus, Geert and García Marques, Antonio},
   title = {BUILD: Bottom-Up Inference of Linear DAGs},
-  year = {2024},
-  publisher = {GitHub},
+  year = {2025},
   url = {https://github.com/hamedajorlou/BUILD}
 }
 ```
