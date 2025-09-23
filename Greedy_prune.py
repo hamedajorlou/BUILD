@@ -117,23 +117,6 @@ def best_greedy(X: np.ndarray,
                 k_list: List[int],
                 threshold_list: List[float],
                 metric: str = "frobenius") -> Dict[str, object]:
-    # best_prec = np.zeros_like(emp_cov)
-    # best_err = np.inf
-    # best_k = -1
-    # best_threshold = -1
-    # norm_true = norm(true_prec, 'fro') + 1e-12
-    # for k in k_list:
-    #     for threshold in threshold_list:
-    #         Theta = full_greedy_and_prune(X, emp_cov, k, threshold)
-    #         if metric == "frobenius":
-    #             err = norm(Theta - true_prec, 'fro') / norm_true
-    #         else:
-    #             raise NotImplementedError("Only Frobenius error supported.")
-    #         if err < best_err:
-    #             best_err = err
-    #             best_prec = Theta
-    #             best_k = k
-    #             best_threshold = threshold
     Theta = full_greedy_and_prune(X, emp_cov, k_list[0], threshold_list[0])
     best_err = 0
     best_k = k_list[0]
